@@ -34,6 +34,7 @@ namespace Reproductor
         DispatcherTimer timer;
         EfectoVolumen volume;
         FadeInOutSampleProvider fades;
+        Delay delay;
         bool fadingOut = false;
 
         bool dragging = false;
@@ -50,7 +51,7 @@ namespace Reproductor
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
 
-            
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -64,14 +65,14 @@ namespace Reproductor
                     sldReproduccion.Value =
                         reader.CurrentTime.TotalSeconds;
                 }
-                
+
             }
         }
 
         private void LlenarComboSalida()
         {
             cbSalida.Items.Clear();
-            for(int i=0; i < WaveOut.DeviceCount; i++)
+            for (int i = 0; i < WaveOut.DeviceCount; i++)
             {
                 WaveOutCapabilities capacidades =
                     WaveOut.GetCapabilities(i);
@@ -85,7 +86,7 @@ namespace Reproductor
         {
             OpenFileDialog openFileDialog =
                 new OpenFileDialog();
-            if(openFileDialog.ShowDialog() == true)
+            if (openFileDialog.ShowDialog() == true)
             {
                 txtRutaArchivo.Text =
                     openFileDialog.FileName;
@@ -94,8 +95,8 @@ namespace Reproductor
 
         private void btnReproducir_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (output != null && 
+
+            if (output != null &&
                 output.PlaybackState == PlaybackState.Paused)
             {
                 output.Play();
@@ -108,8 +109,11 @@ namespace Reproductor
                 reader =
                     new AudioFileReader(txtRutaArchivo.Text);
 
+                delay =
+                    new Delay(reader);
+
                 fades = new FadeInOutSampleProvider(
-                    reader, true);
+                    delay, true);
                 double milisegundosFadeIn =
                     Double.Parse(txtDuracionFadeIn.Text)
                         * 1000.0;
@@ -125,8 +129,8 @@ namespace Reproductor
                 volume =
                     new EfectoVolumen(fades);
 
-                /*volume.Volume =
-                    (float) sldVolumen.Value;*/
+                volume.Volume =
+                    (float)sldVolumen.Value;
 
                 output.Init(volume);
                 output.Play();
@@ -145,7 +149,7 @@ namespace Reproductor
                     reader.CurrentTime.TotalSeconds;
 
                 timer.Start();
-        
+
             }
 
         }
@@ -180,7 +184,7 @@ namespace Reproductor
         }
 
         private void sldReproduccion_DragStarted
-            (object sender, 
+            (object sender,
             System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
             dragging = true;
@@ -202,10 +206,9 @@ namespace Reproductor
             if (volume != null && output != null &&
                 output.PlaybackState != PlaybackState.Stopped)
             {
+                volume.Volume =
+                    (float)sldVolumen.Value;
 
-            /*    volume.Volume =
-                    (float)sldVolumen.Value;*/
-                
             }
             if (lblPorcentajeVolumen != null)
             {
@@ -213,12 +216,12 @@ namespace Reproductor
                     ((int)(sldVolumen.Value * 100)).ToString()
                     + " %";
             }
-            
+
         }
 
         private void btnFadeOut_Click(object sender, RoutedEventArgs e)
         {
-            if(!fadingOut &&
+            if (!fadingOut &&
                 fades != null && output != null &&
                 output.PlaybackState == PlaybackState.Playing)
             {
