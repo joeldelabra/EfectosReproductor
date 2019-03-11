@@ -233,5 +233,45 @@ namespace Reproductor
 
             }
         }
+
+         private void sldDelayOffset_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)  
+           {       
+           if (volume != null && output != null &&
+                  output.PlaybackState != PlaybackState.Stopped)
+              {
+                  volume.Volume =
+                      (float)sldDelayOffset.Value;
+
+              }
+              if (lblDelayOffset != null)
+              {
+                  lblDelayOffset.Text =
+                      ((int)(sldDelayOffset.Value * 100)).ToString()
+                      ;
+              }
+
+
+           }
+
+         private void sdlDelayGanancia_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+         {
+            if (volume != null && output != null &&
+                  output.PlaybackState != PlaybackState.Stopped)
+            {
+                volume.Volume =
+                    (float)sldDelayOffset.Value;
+
+            }
+            if (lblDelayOffset != null)
+            {
+                lblDelayOffset.Text =
+                    ((int)(sldDelayOffset.Value * 100)).ToString()
+                    ;
+            }
+
+
+        }
+     }
+
+     
     }
-}

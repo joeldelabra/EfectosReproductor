@@ -30,10 +30,10 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,191,0,0" TextWrapping="Wrap" Text="Delay:" VerticalAlignment="Top"/>
         <CheckBox x:Name="cbDelayActivo" Content="Activo" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblOffset" HorizontalAlignment="Left" Margin="78,212,0,0" TextWrapping="Wrap" Text="Offset:" VerticalAlignment="Top"/>
-        <Slider x:Name="sldDelayOffset" HorizontalAlignment="Left" Margin="132,210,0,0" VerticalAlignment="Top" Width="116"/>
+        <Slider x:Name="sldDelayOffset" HorizontalAlignment="Left" Margin="132,210,0,0" VerticalAlignment="Top" Width="116" ValueChanged="sldDelayOffset_ValueChanged" Maximum="1"/>
         <TextBlock x:Name="lblDelayOffset" HorizontalAlignment="Left" Margin="132,233,0,0" TextWrapping="Wrap" Text="0 ms" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblGanancia" HorizontalAlignment="Left" Margin="262,210,0,0" TextWrapping="Wrap" Text="Ganancia" VerticalAlignment="Top"/>
-        <Slider x:Name="sdlDelayGanancia" HorizontalAlignment="Left" Margin="316,208,0,0" VerticalAlignment="Top" Width="116"/>
+        <Slider x:Name="sdlDelayGanancia" HorizontalAlignment="Left" Margin="316,208,0,0" VerticalAlignment="Top" Width="116" ValueChanged="sdlDelayGanancia_ValueChanged" Maximum="1"/>
         <TextBlock x:Name="lblDelayGanancia" HorizontalAlignment="Left" Margin="407,231,0,0" TextWrapping="Wrap" Text="0 " VerticalAlignment="Top"/>
 
     </Grid>
