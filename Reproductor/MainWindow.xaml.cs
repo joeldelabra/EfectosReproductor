@@ -233,7 +233,7 @@ namespace Reproductor
 
             }
         }
-
+        
          private void sldDelayOffset_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)  
            {       
            if (volume != null && output != null &&
@@ -271,7 +271,14 @@ namespace Reproductor
 
 
         }
-     }
+
+        private void cbDelayActivo_Checked(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
+    }
 
      
     }
