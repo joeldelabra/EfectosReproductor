@@ -111,6 +111,8 @@ namespace Reproductor
 
                 delay =
                     new Delay(reader);
+                delay.Activo = (bool)cbDelayActivo.IsChecked;
+                delay.OffsetMilisegundos = (int)sldDelayOffset.Value;
 
                 fades = new FadeInOutSampleProvider(
                     delay, true);
@@ -236,19 +238,16 @@ namespace Reproductor
         
          private void sldDelayOffset_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)  
            {       
-           if (volume != null && output != null &&
-                  output.PlaybackState != PlaybackState.Stopped)
-              {
-                  volume.Volume =
-                      (float)sldDelayOffset.Value;
 
-              }
-              if (lblDelayOffset != null)
-              {
-                  lblDelayOffset.Text =
-                      ((int)(sldDelayOffset.Value * 100)).ToString()
-                      ;
-              }
+            if(lblDelayOffset != null)
+            {
+                 lblDelayOffset.Text = sldDelayOffset.Value.ToString() + " ms";
+            }
+           if (delay != null)
+            {
+                delay.OffsetMilisegundos = (int)sldDelayOffset.Value;
+               
+            }
 
 
            }
@@ -278,6 +277,14 @@ namespace Reproductor
 
         }
 
+        private void cbDelayActivo_Click(object sender, RoutedEventArgs e)
+        {
+            if(delay != null)
+            {
+                delay.Activo = (bool)cbDelayActivo.IsChecked;
+            }
+
+        }
     }
 
      

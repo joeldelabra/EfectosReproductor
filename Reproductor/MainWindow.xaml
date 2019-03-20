@@ -28,10 +28,10 @@
         <TextBox x:Name="txtDuracionFadeOut" HorizontalAlignment="Left" Height="23" Margin="144,155,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnFadeOut" Content="Iniciar Fade Out" HorizontalAlignment="Left" Margin="279,155,0,0" VerticalAlignment="Top" Width="103" Click="btnFadeOut_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,191,0,0" TextWrapping="Wrap" Text="Delay:" VerticalAlignment="Top"/>
-        <CheckBox x:Name="cbDelayActivo" Content="Activo" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Checked="cbDelayActivo_Checked"/>
+        <CheckBox x:Name="cbDelayActivo" Click="cbDelayActivo_Click" Content="Activo" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Checked="cbDelayActivo_Checked"/>
         <TextBlock x:Name="lblOffset" HorizontalAlignment="Left" Margin="78,212,0,0" TextWrapping="Wrap" Text="Offset:" VerticalAlignment="Top"/>
-        <Slider x:Name="sldDelayOffset" HorizontalAlignment="Left" Margin="132,210,0,0" VerticalAlignment="Top" Width="116" ValueChanged="sldDelayOffset_ValueChanged" Maximum="1"/>
-        <TextBlock x:Name="lblDelayOffset" HorizontalAlignment="Left" Margin="132,233,0,0" TextWrapping="Wrap" Text="0 ms" VerticalAlignment="Top"/>
+        <Slider x:Name="sldDelayOffset" HorizontalAlignment="Left" Margin="132,210,0,0" VerticalAlignment="Top" Width="116" ValueChanged="sldDelayOffset_ValueChanged" Maximum="3000" SmallChange="1" Value="500"/>
+        <TextBlock x:Name="lblDelayOffset" HorizontalAlignment="Left" Margin="132,233,0,0" TextWrapping="Wrap" Text="500 ms" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblGanancia" HorizontalAlignment="Left" Margin="262,210,0,0" TextWrapping="Wrap" Text="Ganancia" VerticalAlignment="Top"/>
         <Slider x:Name="sdlDelayGanancia" HorizontalAlignment="Left" Margin="316,208,0,0" VerticalAlignment="Top" Width="116" ValueChanged="sdlDelayGanancia_ValueChanged" Maximum="1"/>
         <TextBlock x:Name="lblDelayGanancia" HorizontalAlignment="Left" Margin="407,231,0,0" TextWrapping="Wrap" Text="0 " VerticalAlignment="Top"/>
